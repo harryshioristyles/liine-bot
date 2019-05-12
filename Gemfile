@@ -71,3 +71,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # LINE bot
 gem 'line-bot-api'
+# for LINE
+gem 'dotenv-rails'
