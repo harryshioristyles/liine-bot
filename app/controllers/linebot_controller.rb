@@ -34,13 +34,15 @@ class LinebotController < ApplicationController
         		message = {
 	            type: 'text',
 	            text: "どういたちまちて"
+	          client.reply_message(event['replyToken'], message)
         	else
 	          message = {
 	            type: 'text',
 	            text: event.message['text']
 	          }
-        	end
 	          client.reply_message(event['replyToken'], message)
+        	end
+
         end
       end
     }
