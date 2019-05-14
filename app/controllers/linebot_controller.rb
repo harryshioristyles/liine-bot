@@ -22,16 +22,25 @@ class LinebotController < ApplicationController
 
     events = client.parse_events_from(body)
 
+    # ここでlineに送られたイベントを検出している
+    # messageのtext: に指定すると、返信する文字を決定することができる
+    # event.message['text']で送られたメッセージを取得することができる
     events.each { |event|
-      case event
+      case event #case文　caseの値がwhenと一致する時にwhenの中の文章が実行される(switch文みたいなもの)
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: event.message['text']
-          }
-          client.reply_message(event['replyToken'], message)
+        	if event.message['text'] == "ありがとう"
+        		message = {
+	            type: 'text',
+	            text: "どういたちまちて"
+        	else
+	          message = {
+	            type: 'text',
+	            text: event.message['text']
+	          }
+        	end
+	          client.reply_message(event['replyToken'], message)
         end
       end
     }
